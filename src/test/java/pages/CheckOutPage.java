@@ -15,6 +15,7 @@ public class CheckOutPage {
     public final String RETURN_TO_HOME="blibli.mobile.commerce:id/tv_return_home";
     public final String BANK_DESCRIPTION="//android.widget.TextView[@resource-id=\"blibli.mobile.commerce:id/tv_category_description\" and @text=\"Bank BCA\"]";
     public final String NOMINAL="blibli.mobile.commerce:id/tv_value_3";
+    public final String PRICE="blibli.mobile.commerce:id/tv_total_amount_value";
     public final String ORDER_STATUS_TITLE="new UiSelector().text(\"Order status\")";
     WebDriverWait wait;
     public CheckOutPage(AppiumDriver driver){
@@ -59,5 +60,9 @@ public class CheckOutPage {
     public boolean isDisplayed(String orderStatusTitle) {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(PAYMENT_NAV.replace("Payment","Order status"))));
         return driver.findElement(AppiumBy.androidUIAutomator(orderStatusTitle)).isDisplayed();
+    }
+
+    public String getNominalPrice() {
+        return driver.findElement(By.id(PRICE)).getText();
     }
 }

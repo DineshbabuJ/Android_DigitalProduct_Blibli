@@ -9,7 +9,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.*;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -30,7 +29,7 @@ public class MyStepdefs {
         capabilities.setCapability("udid", "emulator-5554");
         capabilities.setCapability("noReset", true);
         capabilities.setCapability(MobileCapabilityType.APP,"/Users/dineshbabu/Downloads/Blibli-11.4.0(66543) (1).apk");
-        driver= new AndroidDriver(new URL("http://127.0.0.1:4722/wd/hub"),capabilities);
+        driver= new AndroidDriver(new URL("http://127.0.0.1:4720/wd/hub"),capabilities);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
@@ -133,6 +132,8 @@ public class MyStepdefs {
     @And("verify nominal {string} matches in payment page")
     public void verifyNominalMatchesInPaymentPage(String nominal) {
         Assert.assertEquals("Nominal misMatch",nominal,checkOutPage.getNominal());
+        Assert.assertEquals("Nominal Price misMatch",
+                digitalPage.nominalPrice,checkOutPage.getNominalPrice());
     }
 
     @When("Click Pay now Button to confirm order")
@@ -162,6 +163,8 @@ public class MyStepdefs {
     @Then("Verify product details of same nominal {string}")
     public void verifyProductDetailsOfSameNominal(String nominal) {
         Assert.assertEquals("nominal mismatch in ordered section",nominal,orderListPage.getNominal());
+        Assert.assertEquals("Nominal Price misMatch",
+                digitalPage.nominalPrice,orderListPage.getNominalPrice());
     }
 
     @When("cancel the ordered Product")

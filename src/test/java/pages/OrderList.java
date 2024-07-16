@@ -24,6 +24,7 @@ public class OrderList {
     public final String CANCELED_SECTION="//android.widget.TextView[@resource-id=\"blibli.mobile.commerce:id/canceled_tab\"]";
     public final String NOMINAL_IN_ORDERED="blibli.mobile.commerce:id/tv_detail_three";
     public final String CANCELLED_ORDER="new UiSelector().resourceId(\"blibli.mobile.commerce:id/tv_operator_name\").instance(0)";
+    public final String PRICE="blibli.mobile.commerce:id/tv_total_amount_value";
     WebDriverWait wait;
     public OrderList(AppiumDriver driver){
         this.driver=driver;
@@ -64,5 +65,9 @@ public class OrderList {
 
     public boolean verifyProduct(String nominal) {
         return driver.findElement(AppiumBy.androidUIAutomator(CANCELLED_ORDER)).getText().contains(nominal);
+    }
+
+    public String getNominalPrice() {
+        return driver.findElement(By.id(PRICE)).getText();
     }
 }

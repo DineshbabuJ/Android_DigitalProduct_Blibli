@@ -10,16 +10,15 @@ import java.time.Duration;
 
 public class HomePage {
     AppiumDriver driver;
-    public final String POPUP="/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ImageView";
     public final String BILLS_TOPUP="new UiSelector().text(\"Bills & Top-ups\")";
     public final String OTHER_PRODUCTS="new UiSelector().className(\"android.view.ViewGroup\").instance(15)";
     public final String PULSA="new UiSelector().text(\"Pulsa\").instance(0)";
+    public final String POPUP="/hierarchy/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ImageView";
     WebDriverWait wait;
     public HomePage(AppiumDriver driver){
         this.driver=driver;
         wait= new WebDriverWait(driver, Duration.ofSeconds(15));
     }
-
 
     public void chooseBillsTopUpSection() {
         wait.until(ExpectedConditions.presenceOfElementLocated(AppiumBy.androidUIAutomator(BILLS_TOPUP))).click();

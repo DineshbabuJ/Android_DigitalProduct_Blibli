@@ -24,7 +24,9 @@ public class DigitalPage {
     public final String NOMINALS_LIST="//android.widget.TextView[@resource-id=\"blibli.mobile.commerce:id/tv_recharge_title\"]";
     public final String NOMINAL_CHOICE="//android.widget.TextView[@resource-id=\"blibli.mobile.commerce:id/tv_recharge_title\" and @text=\"NOMINAL\"]";
     public final String MAKE_PAYMENT_BTN="blibli.mobile.commerce:id/bt_buy_now";
+    public final String NOMINAL_PRICE="//android.widget.TextView[@resource-id=\"blibli.mobile.commerce:id/tv_final_price\" and @text=\"Rp40.000\"]";
     WebDriverWait wait;
+    public String nominalPrice;
     public DigitalPage(AppiumDriver driver){
         this.driver=driver;
         wait=new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -42,10 +44,9 @@ public class DigitalPage {
     }
 
     public void chooseNominal(String nominal) {
+        nominalPrice=driver.findElement(By.xpath(NOMINAL_PRICE)).getText();
         driver.findElement(By.xpath(NOMINAL_CHOICE.replace("NOMINAL",nominal))).click();
     }
-
-
 
     public void makePayment() {
         driver.findElement(By.id(MAKE_PAYMENT_BTN)).click();
